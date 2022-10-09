@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <form id="tg">
+            <div class="forum_group">
+              <label class="from-label">Имя</label>
+              <input type="text" name="name" class="form-control" />
+            </div>
+            <div class="forum_group">
+              <label class="forum-label">Email</label>
+              <input type="text" name="email" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-success mt-2">
+              Отправить
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      const TOKEN = "5437350885:AAEFppiO1LRp6OSCnRkEPnDkwXcMlywmwog";
+      const CHAT_ID = "-1001552911906";
+      const URL_ID = ` https://api.telegram.org/bot${TOKEN}/sendMessage`;
+      document.getElementById("tg").addEventListener("submit", function (a) {
+        a.preventDefault;
+        let message = `<b>Отправитель</b>\n`;
+        message += `<b>Имя: ${this.name.value}</b>\n`;
+        message += `<b>Емаил: ${this.email.value}</b>`;
+
+        axios.post(URL_ID, {
+          chat_id: CHAT_ID,
+          parse_mode: "html",
+          text: message
+        });
+      });
+    </script>
+  </body>
+</html>
